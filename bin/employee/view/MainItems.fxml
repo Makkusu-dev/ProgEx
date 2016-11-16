@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <bottom>
+            <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="79.0" text="Login" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="70.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
+         <center>
+            <PasswordField maxWidth="150.0" promptText="password" style="-fx-background-radius: 10;" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" />
+               </BorderPane.margin>
+            </PasswordField>
+         </center>
+         <top>
+            <TextField maxWidth="150.0" promptText="employee number" style="-fx-background-radius: 10;" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </TextField>
+         </top>
+      </BorderPane>
+   </bottom>
+   <top>
+      <Label text="Please enter your login details" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets top="100.0" />
+         </BorderPane.margin>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../../media/emergency-medical-cross-hi.png" />
+         </image>
+      </ImageView>
+   </center>
+</BorderPane>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.view.AboutController">
+   <center>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="137.0" prefWidth="254.0" text="FRA-UAS Frankfurt 2016" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Bloom />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#801010" />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+   </center>
+   <bottom>
+      <Button mnemonicParsing="false" onAction="#goToHome" text="Home" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="100.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+</BorderPane>
