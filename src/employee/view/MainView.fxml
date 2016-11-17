@@ -13,6 +13,7 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#adminLogin" text="admin login" />
+                  <MenuItem mnemonicParsing="false" onAction="#logOut" text="logout" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

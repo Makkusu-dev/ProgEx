@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -10,7 +11,8 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="loginButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefWidth="60.0" text="Ok" />
+            <Label fx:id="labelField" prefHeight="17.0" prefWidth="110.0" />
+            <Button fx:id="loginButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleLoginButtonAction" onKeyPressed="#handleLoginButtonAction" prefWidth="60.0" text="Ok" />
             <Button fx:id="cancelButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleCancelButtonAction" prefWidth="60.0" text="Cancel" />
          </children>
       </HBox>
