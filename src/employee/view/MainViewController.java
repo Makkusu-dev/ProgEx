@@ -2,7 +2,9 @@ package employee.view;
 
 import java.io.IOException;
 import employee.Main;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 
 public class MainViewController {
 	private Main main;
@@ -12,14 +14,14 @@ public class MainViewController {
 		main.showAbout();
 	}
 	
-	@FXML
-	private void AddEmployee() throws IOException{		// to implement in Admin Controller
-		main.showAddEmployeePage();	
-	}
 	
 	@FXML
 	private void adminLogin() throws IOException{
 		main.showAdminLogin();
+	}
+	@FXML
+	private void logOut() throws IOException{								// logOut item in menu bar
+		main.showMainItems();
 	}
 	
 	

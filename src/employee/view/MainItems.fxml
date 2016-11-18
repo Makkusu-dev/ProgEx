@@ -9,30 +9,39 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.view.MainItemsController">
    <bottom>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <bottom>
-            <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="79.0" text="Login" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets bottom="70.0" />
-               </BorderPane.margin>
-            </Button>
-         </bottom>
          <center>
-            <PasswordField maxWidth="150.0" promptText="password" style="-fx-background-radius: 10;" BorderPane.alignment="CENTER">
+            <PasswordField fx:id="passwordField" maxWidth="150.0" promptText="password" style="-fx-background-radius: 10;" BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets bottom="20.0" />
+                  <Insets />
                </BorderPane.margin>
             </PasswordField>
          </center>
          <top>
-            <TextField maxWidth="150.0" promptText="employee number" style="-fx-background-radius: 10;" BorderPane.alignment="CENTER">
+            <TextField fx:id="loginField" maxWidth="150.0" promptText="employee number" style="-fx-background-radius: 10;" BorderPane.alignment="CENTER">
                <BorderPane.margin>
-                  <Insets />
+                  <Insets bottom="20.0" />
                </BorderPane.margin>
             </TextField>
          </top>
+         <bottom>
+            <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="label">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button fx:id="loginButton" minHeight="40.0" minWidth="80.0" mnemonicParsing="false" onAction="#handleLoginButtonAction" prefHeight="80.0" prefWidth="80.0" text="Login">
+                     <VBox.margin>
+                        <Insets bottom="90.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </bottom>
       </BorderPane>
    </bottom>
    <top>
