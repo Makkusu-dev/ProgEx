@@ -10,7 +10,7 @@ public class DatabaseTest {
 		try {
 
 			Class.forName("org.sqlite.JDBC");											//Connecting to the database
-			c = DriverManager.getConnection("jdbc:sqlite:database.db");
+			c = DriverManager.getConnection("jdbc:sqlite:Test.db");
 			
 		} catch (Exception e) {
 			System.out.println(e);
@@ -22,7 +22,7 @@ public class DatabaseTest {
 		try {
 			
 			stmt = c.createStatement();													//Creating a basic table named "Patient" with a few parameters
-			String sql = "CREATE TABLE Patient" +
+			String sql = "CREATE TABLE Mensch" +
 						 "(ID INT PRIMARY KEY     NOT NULL," +
 						 " NAME           TEXT    NOT NULL)";
 			
@@ -39,16 +39,16 @@ public class DatabaseTest {
 		
 	    try {
 	    	
-	        c = DriverManager.getConnection("jdbc:sqlite:database.db");					//Reinitializing database connection
+	        c = DriverManager.getConnection("jdbc:sqlite:Test.db");					//Reinitializing database connection
 	        c.setAutoCommit(false);														//AutoCommit=FALSE (manual commit needed)
 
 	        stmt = c.createStatement();													//Defining a statement
 	        
-	        String sql = "INSERT INTO Patient (ID,NAME) " +								//SQL insert statement for populating the new table with some data
+	        String sql = "INSERT INTO Mensch (ID,NAME) " +								//SQL insert statement for populating the new table with some data
 	        			 "VALUES (1, 'Der Weihnachtsmann');"; 
 	        stmt.executeUpdate(sql);													//Executing statement
        
-       		sql = "INSERT INTO Patient (ID,NAME) " +
+       		sql = "INSERT INTO Mensch (ID,NAME) " +
        			  "VALUES (2, 'Bear Grylls');";
        		stmt.executeUpdate(sql);													//Executing statement
        		
@@ -65,7 +65,7 @@ public class DatabaseTest {
 	    try {
 	    	
 	        stmt = c.createStatement();													//SELECT statement with a loop for listing all table entries
-	        ResultSet rs = stmt.executeQuery( "SELECT * FROM Patient;" );
+	        ResultSet rs = stmt.executeQuery( "SELECT * FROM Mensch;" );
 	        while ( rs.next() ) {
 	           int id = rs.getInt("id");
 	           String  name = rs.getString("name");
@@ -85,19 +85,19 @@ public class DatabaseTest {
 	    
 	    try {
 	    	
-	        c = DriverManager.getConnection("jdbc:sqlite:database.db");					//Reinitializing database connection
+	        c = DriverManager.getConnection("jdbc:sqlite:Test.db");					//Reinitializing database connection
 	        c.setAutoCommit(false);
 
 	        stmt = c.createStatement();
-	        String sql = "UPDATE Patient set name = 'Tot' where ID=1;";					//Updating a data set
+	        String sql = "UPDATE Mensch set name = 'Tot' where ID=1;";					//Updating a data set
 	        stmt.executeUpdate(sql);
 	        
-	        sql = "DELETE FROM Patient where ID=2;";									//Deleting a data set
+	        sql = "DELETE FROM Mensch where ID=2;";									//Deleting a data set
 	        stmt.executeUpdate(sql);
 	        
 	        c.commit();
 	        
-	        ResultSet rs = stmt.executeQuery( "SELECT * FROM Patient;" );				//Another SELECT statement for listing all table entries
+	        ResultSet rs = stmt.executeQuery( "SELECT * FROM Mensch;" );				//Another SELECT statement for listing all table entries
 	        while ( rs.next() ) {
 	           int id = rs.getInt("id");
 	           String  name = rs.getString("name");
@@ -117,11 +117,11 @@ public class DatabaseTest {
 	    
 	    try {
 	    	
-	        c = DriverManager.getConnection("jdbc:sqlite:database.db");					//Reinitializing database connection
+	        c = DriverManager.getConnection("jdbc:sqlite:Test.db");					//Reinitializing database connection
 	        c.setAutoCommit(false);
 	        
 	        stmt = c.createStatement();
-	        String sql = "DROP TABLE Patient;";											//Dropping the table "Patient"
+	        String sql = "DROP TABLE Mensch;";											//Dropping the table "Patient"
 	        stmt.executeUpdate(sql);
 	        
 	        c.commit();
