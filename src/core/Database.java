@@ -1,19 +1,29 @@
 package core;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import classes.Furniture;
 import classes.Admin;
 
+/**
+ * The Database class of the ProgEx project contains methods for establishing a database connection as well as data transfer from and to the database.
+ * 
+ * @version 1.0
+ */
 public class Database {
-
-	public static ObservableList<Furniture> loadFurniture() {
+	
+	/**
+	 * The loadFurniture method loads a list of Furniture objects from the database.
+	 * 
+	 * @return ObervableList An ObservableList of the data type Furniture
+	 * @throws java.lang.Exception	SQL exception if there is a problem with the database connection
+	 * @see Furniture
+	 */
+	public static ObservableList<Furniture> loadFurniture() throws Exception {
 
 		ObservableList<Furniture> furnitureList = FXCollections.observableArrayList();
 
@@ -59,6 +69,13 @@ public class Database {
 		return furnitureList;
 	}
 
+	/**
+	 * The saveFurniture method saves a list of Furniture objects in the database.
+	 * 
+	 * @param furnitureList	An ObservableList of the data type Furniture
+	 * @throws java.lang.Exception	SQL exception if there is a problem with the database connection
+	 * @see Furniture
+	 */
 	public static void saveFurniture(ObservableList<Furniture> furnitureList) throws Exception {
 
 		Connection c = null;
@@ -95,7 +112,14 @@ public class Database {
 		}
 	}
 
-	public static ArrayList<Admin> loadAdmins() {
+	/**
+	 * The loadAdmins method loads a list of Admin objects from the database.
+	 * 
+	 * @return ObservableList An ObservableList of the data type Admin
+	 * @throws java.lang.Exception	SQL exception if there is a problem with the database connection
+	 * @see Admin
+	 */
+	public static ArrayList<Admin> loadAdmins() throws Exception {
 
 		ArrayList<Admin> adminList = new ArrayList<Admin>();
 

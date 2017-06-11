@@ -1,5 +1,10 @@
 package classes;
 
+/**
+ * The Admin class of the ProgEx project. It contains getter/setter methods for Admin objects.
+ * 
+ * @version 1.0
+ */
 public class Admin {
 
 	// Vars
