@@ -91,7 +91,6 @@ public class Database {
 			stmt = c.createStatement();
 
 			stmt.executeUpdate("DELETE FROM Furniture;");
-			stmt.executeUpdate("DELETE FROM sqlite_sequence;");
 
 			// Save everything
 			for (Furniture f : furnitureList) {
