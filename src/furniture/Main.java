@@ -55,6 +55,14 @@ public class Main extends Application {
 	}
 
 
+	public static void showCustZomm () throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("customer/CustomerZoom.fxml"));
+		BorderPane zoom = loader.load();
+		mainLayout.setCenter(zoom);
+
+
+	}
 
 	public static void main(String[] args) {
 		launch(args);

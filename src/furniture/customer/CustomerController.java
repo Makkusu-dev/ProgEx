@@ -7,6 +7,7 @@ import java.io.IOException;
 import furniture.Main;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,6 +28,11 @@ public class CustomerController {
 
 	@FXML
 	private ImageView imgView;
+
+	@FXML
+	private Text amount;
+
+
 	private float pricetag;
 	private String nameIn;
 	private String exTextIn;
@@ -54,6 +60,34 @@ public class CustomerController {
 		main.showLoginScene();
 
 	}
+
+	@FXML
+	private void goZoom() throws IOException{
+		main.showCustZomm();
+	}
+	int x=0;
+	@FXML
+	private void add() throws IOException{
+		if(x<99){
+		x++;
+		String temp=Integer.toString(x);
+		amount.setText(temp);
+		}
+	}
+
+
+	@FXML
+	private void sub() throws IOException{
+
+
+
+		if(x>0){
+			x--;
+			String temp=Integer.toString(x);
+			amount.setText(temp);
+		}
+	}
+
 
 }
 
