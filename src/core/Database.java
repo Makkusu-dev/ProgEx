@@ -1,29 +1,28 @@
 package core;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
-import javafx.collections.FXCollections;
+import javafx.collections.*;
 import javafx.collections.ObservableList;
-import classes.Furniture;
-import classes.Admin;
+import classes.*;
 
 /**
- * The Database class of the ProgEx project contains methods for establishing a database connection as well as data transfer from and to the database.
+ * The Database class of the ProgEx project contains methods for establishing a
+ * database connection as well as data transfer from and to the database.
  * 
  * @version 1.0
+ * @see java.sql
  */
 public class Database {
-	
+
 	/**
-	 * The loadFurniture method loads a list of Furniture objects from the database.
+	 * The loadFurniture method loads a list of Furniture objects from the
+	 * database.
 	 * 
 	 * @return ObervableList An ObservableList of the data type Furniture
-	 * @throws java.lang.Exception	SQL exception if there is a problem with the database connection
 	 * @see Furniture
 	 */
-	public static ObservableList<Furniture> loadFurniture() throws Exception {
+	public static ObservableList<Furniture> loadFurniture() {
 
 		ObservableList<Furniture> furnitureList = FXCollections.observableArrayList();
 
@@ -37,6 +36,7 @@ public class Database {
 
 		} catch (Exception e) {
 			System.out.println(e);
+			System.out.println("fuuuuuuk");
 			System.exit(0);
 		}
 
@@ -70,13 +70,14 @@ public class Database {
 	}
 
 	/**
-	 * The saveFurniture method saves a list of Furniture objects in the database.
+	 * The saveFurniture method saves a list of Furniture objects in the
+	 * database.
 	 * 
-	 * @param furnitureList	An ObservableList of the data type Furniture
-	 * @throws java.lang.Exception	SQL exception if there is a problem with the database connection
+	 * @param furnitureList
+	 *            An ObservableList of the data type Furniture
 	 * @see Furniture
 	 */
-	public static void saveFurniture(ObservableList<Furniture> furnitureList) throws Exception {
+	public static void saveFurniture(ObservableList<Furniture> furnitureList) {
 
 		Connection c = null;
 		Statement stmt = null;
@@ -105,10 +106,18 @@ public class Database {
 
 			System.out.println("++EVERYTHING NOW SAVED++");
 		} catch (Exception e) {
-			c.rollback();
+			try {
+				c.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			System.out.println(e);
 		} finally {
-			c.close();
+			try {
+				c.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -116,10 +125,9 @@ public class Database {
 	 * The loadAdmins method loads a list of Admin objects from the database.
 	 * 
 	 * @return ObservableList An ObservableList of the data type Admin
-	 * @throws java.lang.Exception	SQL exception if there is a problem with the database connection
 	 * @see Admin
 	 */
-	public static ArrayList<Admin> loadAdmins() throws Exception {
+	public static ArrayList<Admin> loadAdmins() {
 
 		ArrayList<Admin> adminList = new ArrayList<Admin>();
 
