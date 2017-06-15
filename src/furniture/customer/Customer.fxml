@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="furniture.customer.CustomerController">
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Featured product ">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="imgView" fitHeight="200.0" fitWidth="200.0" layoutX="37.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="exText" boundsType="LOGICAL_VERTICAL_CENTER" layoutX="299.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BAOLALALLLASLLDLASDLSALDLASLDLASDLASLDLASDLALSDLASDLASDL" wrappingWidth="255.171875" AnchorPane.bottomAnchor="177.0" AnchorPane.leftAnchor="299.0" AnchorPane.rightAnchor="46.0" AnchorPane.topAnchor="160.0" />
+                        <Text fx:id="name" layoutX="299.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                           <font>
+                              <Font name="System Bold Italic" size="15.0" />
+                           </font></Text>
+                        <Text fx:id="priceTag" layoutX="299.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Text>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f96ff00" height="200.0" layoutX="37.0" layoutY="86.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Untitled Tab">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="167.0" layoutY="14.0" promptText="search" />
+                        <Text layoutX="59.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for item">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Untitled Tab 2">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+   <right>
+      <Button mnemonicParsing="false" onAction="#goAdmin" text="Admin" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="400.0" />
+         </BorderPane.margin>
+      </Button>
+   </right>
+</BorderPane>
