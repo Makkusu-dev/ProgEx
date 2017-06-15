@@ -3,6 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="sqlite-jdbc-3.15.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Nima/Downloads/eclipse-SDK-4.6.0-win32-x86_64-distro-2.4.0 (1)/eclipse/plugins/org.eclipse.fx.ide.css.jfx8_2.4.0.201605112122.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Max/git/ProgEx/org.eclipse.fx.ide.css.jfx8_2.4.0.201605112122.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

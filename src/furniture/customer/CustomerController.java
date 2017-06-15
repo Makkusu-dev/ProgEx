@@ -1,8 +1,11 @@
 package furniture.customer;
+import classes.*;
+import core.Database;
 
 import java.io.IOException;
 
 import furniture.Main;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -24,18 +27,24 @@ public class CustomerController {
 
 	@FXML
 	private ImageView imgView;
-
-	//Image img = new Image("media/stuhl_01.jpg");
-
-	public Image img = new Image("file:media/stuhl_03.jpg");
-
-
+	private float pricetag;
+	private String nameIn;
+	private String exTextIn;
+	private Image img;
+	ObservableList<Furniture> furnitureList;
 
 	@FXML
 	private void initialize(){
-	priceTag.setText("19.99 " + euro);
-	name.setText("Scruffel");
-	exText.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra erat eget condimentum varius. Ut sit amet facilisis ipsum, sit amet gravida elit. Phasellus quis orci nunc. Nunc et justo faucibus, hendrerit nulla ac, venenatis ipsum. Nunc posuere varius erat, non auctor diam vestibulum ac. ");
+	furnitureList = Database.loadFurniture();
+
+	pricetag = furnitureList.get(0).getPrice();
+	nameIn = furnitureList.get(0).getName();
+	exTextIn = furnitureList.get(0).getDescription();
+	img = new Image(furnitureList.get(0).getPictureFile());
+
+	priceTag.setText(pricetag + euro);
+	name.setText(nameIn);
+	exText.setText(exTextIn);
 	imgView.setImage(img);
 	}
 
