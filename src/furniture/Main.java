@@ -2,7 +2,10 @@ package furniture;
 
 import java.io.IOException;
 
+import classes.Furniture;
+import core.Database;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -11,9 +14,9 @@ import javafx.scene.layout.BorderPane;
 
 
 public class Main extends Application {
-	private Stage primaryStage;
+	private static Stage primaryStage;
 	private static BorderPane mainLayout;
-
+	private static ObservableList<Furniture> furnitureList;
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage = primaryStage;
@@ -21,7 +24,16 @@ public class Main extends Application {
 
 		showMainView();
 		showCustomerScene();
+		Main.primaryStage.setResizable(false);
+	}
 
+	private Furniture getFurnitureById(int id) {
+		for (Furniture item : this.furnitureList) {
+			if (id == item.getId()) {
+				return item;
+			}
+		}
+		return null;
 	}
 
 	private void showMainView() throws IOException{
@@ -47,13 +59,6 @@ public class Main extends Application {
 		mainLayout.setCenter(main);
 	}
 
-	public static void showAdminScene() throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("admin/Admin.fxml"));
-		BorderPane admin = loader.load();
-		mainLayout.setCenter(admin);
-	}
-
 
 	public static void showCustZomm () throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -66,5 +71,7 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+		furnitureList = Database.loadFurniture();
+
 	}
 }

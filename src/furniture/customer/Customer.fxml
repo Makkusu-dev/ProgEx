@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="furniture.customer.CustomerController">
+<BorderPane prefHeight="400.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="furniture.customer.CustomerController">
    <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="Featured product ">
+          <Tab fx:id="firstTab" text="Featured product ">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -29,28 +29,37 @@
                               <Font name="System Bold" size="15.0" />
                            </font></Text>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f96ff00" height="200.0" layoutX="37.0" layoutY="86.0" onMouseClicked="#goZoom" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-                        <Text fx:id="amount" layoutX="464.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="32.0" layoutX="451.0" layoutY="272.0" stroke="BLACK" strokeType="INSIDE" width="32.0" />
-                        <Button layoutX="429.0" layoutY="275.0" mnemonicParsing="false" onAction="#sub" text="-" />
-                        <Button layoutX="484.0" layoutY="275.0" mnemonicParsing="false" onAction="#add" text="+" />
+                        <Text fx:id="amount" layoutX="503.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="32.0" layoutX="491.0" layoutY="229.0" stroke="BLACK" strokeType="INSIDE" width="32.0" />
+                        <Button layoutX="469.0" layoutY="232.0" mnemonicParsing="false" onAction="#sub" text="-" />
+                        <Button layoutX="524.0" layoutY="232.0" mnemonicParsing="false" onAction="#add" text="+" />
+                        <Button layoutX="471.0" layoutY="276.0" mnemonicParsing="false" text="AddToCart" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Untitled Tab">
+            <Tab text="Search product">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="167.0" layoutY="14.0" promptText="search" />
+                        <TextField fx:id="filterField" layoutX="167.0" layoutY="14.0" promptText="search" />
                         <Text layoutX="59.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for item">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Text>
+                        <TableView fx:id="furnitureTable" layoutX="38.0" layoutY="76.0" prefHeight="263.0" prefWidth="470.0">
+                          <columns>
+                            <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                              <TableColumn fx:id="priceColumn" prefWidth="136.0" text="Price" />
+                              <TableColumn fx:id="amountColumn" prefWidth="258.0" text="Amount" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="540.0" layoutY="76.0" mnemonicParsing="false" onAction="#select" text="Show" />
                      </children></AnchorPane>
               </content>
             </Tab>
-          <Tab text="Untitled Tab 2">
+          <Tab text="Your cart">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
@@ -58,11 +67,4 @@
         </tabs>
       </TabPane>
    </center>
-   <right>
-      <Button mnemonicParsing="false" onAction="#goAdmin" text="Admin" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="400.0" />
-         </BorderPane.margin>
-      </Button>
-   </right>
 </BorderPane>
