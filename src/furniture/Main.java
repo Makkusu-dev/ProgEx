@@ -3,6 +3,7 @@ package furniture;
 import java.io.IOException;
 
 import classes.Furniture;
+import classes.ShoppingCart;
 import core.Database;
 import javafx.application.Application;
 import javafx.collections.ObservableList;

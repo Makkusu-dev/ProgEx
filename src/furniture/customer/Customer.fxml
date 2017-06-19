@@ -33,7 +33,8 @@
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="32.0" layoutX="491.0" layoutY="229.0" stroke="BLACK" strokeType="INSIDE" width="32.0" />
                         <Button layoutX="469.0" layoutY="232.0" mnemonicParsing="false" onAction="#sub" text="-" />
                         <Button layoutX="524.0" layoutY="232.0" mnemonicParsing="false" onAction="#add" text="+" />
-                        <Button layoutX="471.0" layoutY="276.0" mnemonicParsing="false" text="AddToCart" />
+                        <Button layoutX="471.0" layoutY="276.0" mnemonicParsing="false" onAction="#addToCartButton" text="AddToCart" />
+                        <Text fx:id="respText" layoutX="492.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " />
                      </children>
                   </AnchorPane>
             </content>
@@ -61,7 +62,19 @@
             </Tab>
           <Tab text="Your cart">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="60.0" layoutY="49.0" text="Your selection" />
+                        <Text fx:id="priceFull" layoutX="498.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <Button layoutX="534.0" layoutY="234.0" mnemonicParsing="false" text="Buy" />
+                        <TableView fx:id="cartTable" layoutX="39.0" layoutY="66.0" prefHeight="284.0" prefWidth="419.0">
+                           <columns>
+                              <TableColumn fx:id="nameColumnCart" prefWidth="75.0" text="Name" />
+                              <TableColumn fx:id="priceColumnCart" prefWidth="136.0" text="Price" />
+                              <TableColumn fx:id="amountColumnCart" prefWidth="258.0" text="Amount" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>

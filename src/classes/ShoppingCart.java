@@ -1,22 +1,27 @@
 package classes;
 
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * The ShoppingCart class of the ProgEx project. It contains methods for adding
  * and removing items to and from the shopping cart.
- * 
+ *
  * @version 1.0
  */
 public class ShoppingCart {
 
-	public ArrayList<Furniture> itemList = new ArrayList<Furniture>();
+	private ObservableList<Furniture> itemList = FXCollections.observableArrayList();
+
+	public ObservableList<Furniture> getItemList() {
+		return itemList;
+	}
 
 	/**
 	 * The addItemToList method adds one object of the Furniture data type to
 	 * the ArrayList of the shopping cart, if the stock value is greater than
 	 * one. It then decreases the Stock value of the Furniture object by one.
-	 * 
+	 *
 	 * @param item
 	 *            A Furniture object to be added to the ArrayList of the
 	 *            shopping cart.
@@ -25,7 +30,7 @@ public class ShoppingCart {
 	 * @see Furniture
 	 */
 	public boolean addItemToList(Furniture item) {
-		if (this.itemList.add(item)) {
+		if (itemList.add(item)) {
 			int stock = item.getStock();
 			if (stock < 1) {
 				return false;
@@ -42,7 +47,7 @@ public class ShoppingCart {
 	 * type to the ArrayList of the shopping cart, if the stock value is
 	 * sufficient. It also decreases the Stock value of the Furniture object by
 	 * the given amount.
-	 * 
+	 *
 	 * @param item
 	 *            A Furniture object to be added to the ArrayList of the
 	 *            shopping cart.
@@ -56,7 +61,7 @@ public class ShoppingCart {
 	public boolean addItemToList(Furniture item, int amount) {
 		if (item.getStock() >= amount) {
 			for (int i = 0; i < amount; i++) {
-				this.itemList.add(item);
+				itemList.add(item);
 				item.setStock(item.getStock() - 1);
 			}
 			return true;
@@ -70,7 +75,7 @@ public class ShoppingCart {
 	 * type from the ArrayList of the shopping cart, if one exists in the
 	 * ArrayList. It then increases the Stock value of the Furniture object by
 	 * one.
-	 * 
+	 *
 	 * @param id
 	 *            The id of the Furniture object, that is to be removed from the
 	 *            ArrayList of the shopping cart.
@@ -81,10 +86,10 @@ public class ShoppingCart {
 	public boolean removeItemFromList(int id) {
 		int count = this.containsItemWithId(id);
 		if (count > 0) {
-			for (Furniture item : this.itemList) {
+			for (Furniture item : itemList) {
 				if (item.getId() == id) {
 					item.setStock(item.getStock() + 1);
-					this.itemList.remove(item);
+					itemList.remove(item);
 					return true;
 				}
 			}
@@ -97,7 +102,7 @@ public class ShoppingCart {
 	 * Furniture data type from the ArrayList of the shopping cart, if at least
 	 * one exists in the ArrayList. It then increases the Stock value of the
 	 * Furniture object by the amount that has been removed.
-	 * 
+	 *
 	 * @param id
 	 *            The id of the Furniture object, that is to be removed from the
 	 *            ArrayList of the shopping cart.
@@ -113,7 +118,7 @@ public class ShoppingCart {
 		int index = 0;
 		if (count > 0 && amount <= count) {
 			int diff = count - amount;
-			for (Furniture item : this.itemList) {
+			for (Furniture item : itemList) {
 				if (item.getId() == id) {
 					if (count > diff) {
 						array[index] = item;
@@ -124,7 +129,7 @@ public class ShoppingCart {
 			}
 			for (Furniture f : array) {
 				f.setStock(f.getStock() + 1);
-				this.itemList.remove(f);
+				itemList.remove(f);
 			}
 			return true;
 		}
@@ -134,7 +139,7 @@ public class ShoppingCart {
 	/**
 	 * This method returns the amount of Furniture objects in the shopping cart
 	 * with the given id.
-	 * 
+	 *
 	 * @param id
 	 *            The id of the Furniture object
 	 * @return the count of the Furniture objects with the given id in the
@@ -143,7 +148,7 @@ public class ShoppingCart {
 	 */
 	public int containsItemWithId(int id) {
 		int count = 0;
-		for (Furniture i : this.itemList) {
+		for (Furniture i : itemList) {
 			if (i.getId() == id) {
 				count++;
 			}

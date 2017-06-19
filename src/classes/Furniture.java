@@ -2,7 +2,7 @@ package classes;
 
 /**
  * The Furniture class of the ProgEx project. It contains getter/setter methods as well as a constructor for Furniture objects.
- * 
+ *
  * @version 1.0
  */
 public class Furniture {
@@ -22,6 +22,11 @@ public class Furniture {
 		this.description = description;
 		this.pictureFile = pictureFile;
 		this.price = price;
+	}
+
+	//Added constructer
+	public Furniture() {
+		// TODO Auto-generated constructor stub
 	}
 
 	// Getters/Setters
