@@ -55,6 +55,10 @@ public class CustomerController {
 	private Text priceFull;
 	@FXML
 	private Text respText;
+	@FXML
+	private Text remText;
+	@FXML
+	private Text cartRespText;
 
 	@FXML
 	private Button goTo;
@@ -131,6 +135,44 @@ public class CustomerController {
 		furnitureTable.setItems(furnitureList);
 	}
 
+	public void fillCartTable() {
+
+		ObservableList<Furniture> tableList = FXCollections.observableArrayList();
+		Set<Furniture> uniqueElements = new HashSet<Furniture>(shoppingCart.getItemList());
+		tableList.addAll(uniqueElements);
+
+		nameColumnCart.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Furniture, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TableColumn.CellDataFeatures<Furniture, String> p) {
+						return new SimpleStringProperty(p.getValue().getName());
+					}
+				});
+
+		priceColumnCart.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Furniture, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(TableColumn.CellDataFeatures<Furniture, String> p) {
+						return new SimpleStringProperty(Float.toString(p.getValue().getPrice()));
+					}
+				});
+
+		amountColumnCart.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Furniture, String>, ObservableValue<String>>() {
+
+					@Override
+					public ObservableValue<String> call(TableColumn.CellDataFeatures<Furniture, String> p) {
+						return new SimpleStringProperty(
+								Integer.toString(shoppingCart.containsItemWithId(p.getValue().getId())));
+					}
+
+				});
+
+		cartTable.setItems(tableList);
+		cartTable.refresh();
+		furnitureTable.refresh();
+	}
+
 	private void filter() {
 
 		// Wrap the ObservableList in a FilteredList (initially display all
@@ -181,6 +223,8 @@ public class CustomerController {
 		name.setText(nameIn);
 		exText.setText(exTextIn);
 		imgView.setImage(img);
+		cartTable.setPlaceholder(new Label("room for furniture"));
+
 		fillTable();
 		filter();
 	}
@@ -210,9 +254,9 @@ public class CustomerController {
 		Main.showCustZomm();
 	}
 
+	// ADD TO CART
 	int x = 1;
 
-	//ADD TO CART
 	@FXML
 	private void buyAdd() throws IOException {
 		respText.setText("");
@@ -232,27 +276,32 @@ public class CustomerController {
 			amount.setText(temp);
 		}
 	}
-	
-	//REMOVE FROM CART
+
+	// REMOVE FROM CART
+	int y = 1;
+
 	@FXML
 	private void removeAdd() throws IOException {
-		if (x < shoppingCart.containsItemWithId(cartTable.getSelectionModel().getSelectedItem().getId())) {
-			x++;
-			String temp = Integer.toString(x);
-			LOLOLOLAMOUNTOLOLO.setText(temp);
+		if (cartTable.getSelectionModel().getSelectedItem() != null) {
+			if (y < shoppingCart.containsItemWithId(cartTable.getSelectionModel().getSelectedItem().getId())) {
+				y++;
+				String temp = Integer.toString(y);
+				remText.setText(temp);
+				cartRespText.setText("");
+			}
 		}
 	}
 
 	@FXML
 	private void removeSub() throws IOException {
-		if (x > 1) {
-			x--;
-			String temp = Integer.toString(x);
-			LOLOLOLAMOUNTOLOLO.setText(temp);
+		if (y > 1) {
+			y--;
+			String temp = Integer.toString(y);
+			remText.setText(temp);
+			cartRespText.setText("");
 		}
 	}
 
-	
 	@FXML
 	private boolean addToCartButton() throws InterruptedException {
 
@@ -260,10 +309,13 @@ public class CustomerController {
 		int i = Integer.parseInt(temp);
 		if (i == 1) {
 			if (shoppingCart.addItemToList(selectedItem)) {
+				float temp2 = shoppingCart.calculatePrice();
+				String temp3 = Float.toString(temp2);
 				fillCartTable();
 				respText.setText("Added item to cart!");
 				amount.setText("1");
 				x = 1;
+				priceFull.setText(temp3+ " "+ euro);
 				return true;
 			} else {
 				respText.setText("Item stock not sufficient!");
@@ -274,11 +326,15 @@ public class CustomerController {
 		}
 		if (i > 1) {
 			if (shoppingCart.addItemToList(selectedItem, i)) {
+				float temp2 = shoppingCart.calculatePrice();
+				String temp3 = Float.toString(temp2);
 				fillCartTable();
 				respText.setText("Added items to cart!");
 				amount.setText("1");
 				x = 1;
+				priceFull.setText(temp3+ " "+ euro);
 				return true;
+
 			} else {
 				respText.setText("Item stock not sufficient!");
 				amount.setText("1");
@@ -289,29 +345,62 @@ public class CustomerController {
 		return false;
 	}
 
+	@FXML
 	private boolean removeFromCartButton() {
 
-		String temp = LOLOLOLAMOUNTOLOLO.getText();
+		String temp = remText.getText();
 		int i = Integer.parseInt(temp);
+
 		if (i == 1) {
-			if (shoppingCart.removeItemFromList(selectedItem.getId())) {
-				fillCartTable();
-				return true;
-			} else {
-				LOLOLOLRESPONSEOLOLOO.setText("Error!");
-				return false;
+			if (cartTable.getSelectionModel().getSelectedItem() != null) {
+				if (shoppingCart.removeItemFromList(cartTable.getSelectionModel().getSelectedItem().getId())) {
+					float temp2 = shoppingCart.calculatePrice();
+					String temp3 = Float.toString(temp2);
+					fillCartTable();
+					cartRespText.setText("");
+					priceFull.setText(temp3+ " "+ euro);
+					return true;
+				} else {
+					cartRespText.setText("Error!");
+					return false;
+				}
 			}
 		}
+
 		if (i > 1) {
-			if (shoppingCart.removeItemFromList(selectedItem.getId(), i)) {
-				fillCartTable();
-				return true;
-			} else {
-				LOLOLOLRESPONSEOLOLOO.setText("Error!");
-				return false;
+			if (cartTable.getSelectionModel().getSelectedItem() != null) {
+				if (shoppingCart.removeItemFromList(cartTable.getSelectionModel().getSelectedItem().getId(), i)) {
+					float temp2 = shoppingCart.calculatePrice();
+					String temp3 = Float.toString(temp2);
+					fillCartTable();
+					remText.setText("1");
+					y = 1;
+					cartRespText.setText("");
+					priceFull.setText(temp3+ " "+ euro);
+					return true;
+				} else {
+					cartRespText.setText("Error!");
+					return false;
+				}
 			}
+			return false;
 		}
 		return false;
+	}
+	@FXML
+	private void checkout() {
+
+		ObservableList<Furniture> tableList = FXCollections.observableArrayList();
+		Set<Furniture> uniqueElements = new HashSet<Furniture>(shoppingCart.getItemList());
+		tableList.removeAll(uniqueElements);
+
+		for (Furniture f : uniqueElements) {
+			shoppingCart.removeItemFromList(f.getId(), shoppingCart.containsItemWithId(f.getId()));
+		}
+		priceFull.setText("0.00 "+euro);
+		cartTable.setItems(tableList);
+		cartTable.refresh();
+		furnitureTable.refresh();
 	}
 
 }

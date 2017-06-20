@@ -159,4 +159,17 @@ public class ShoppingCart {
 		return 0;
 	}
 
+	/**
+	 * This method calculates the price sum of the entire shopping cart.
+	 *
+	 * @return float sum
+	 */
+	public float calculatePrice(){
+		float sum = 0;
+		for(Furniture f : itemList){
+			sum = sum + f.getPrice();
+		}
+		return sum;
+	}
+
 }

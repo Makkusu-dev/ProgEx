@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -21,7 +22,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Furniture");
+		this.primaryStage.setTitle("Nimax Furniture Shop");
+		this.primaryStage.getIcons().add(new Image("file:media/icon.png"));
 
 		showMainView();
 		showCustomerScene();
