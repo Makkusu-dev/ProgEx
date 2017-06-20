@@ -5,6 +5,8 @@ import core.Database;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import furniture.Main;
@@ -31,7 +33,7 @@ import javafx.beans.value.ObservableValue;
 public class CustomerController {
 	String euro = "\u20ac";
 	private Main main;
-	private Furniture selectedItem;
+	protected Furniture selectedItem;
 
 	static ObservableList<Furniture> furnitureList = FXCollections.observableArrayList();
 
@@ -130,6 +132,7 @@ public class CustomerController {
 	}
 
 	private void filter() {
+
 		// Wrap the ObservableList in a FilteredList (initially display all
 		// data).
 		FilteredList<Furniture> filteredData = new FilteredList<>(furnitureList, p -> true);
@@ -161,6 +164,7 @@ public class CustomerController {
 
 		// Add sorted (and filtered) data to the table.
 		furnitureTable.setItems(filteredData);
+		furnitureTable.refresh();
 
 	}
 
@@ -196,17 +200,22 @@ public class CustomerController {
 		exText.setText(exTextIn);
 		imgView.setImage(img);
 		tabPane.getSelectionModel().select(firstTab);
+
+		respText.setText("");
 	}
 
 	@FXML
 	private void goZoom() throws IOException {
-		main.showCustZomm();
+		respText.setText("");
+		Main.showCustZomm();
 	}
 
-	int x = 0;
+	int x = 1;
 
+	//ADD TO CART
 	@FXML
-	private void add() throws IOException {
+	private void buyAdd() throws IOException {
+		respText.setText("");
 		if (x < 99) {
 			x++;
 			String temp = Integer.toString(x);
@@ -215,47 +224,35 @@ public class CustomerController {
 	}
 
 	@FXML
-	private void sub() throws IOException {
-
-		if (x > 0) {
+	private void buySub() throws IOException {
+		respText.setText("");
+		if (x > 1) {
 			x--;
 			String temp = Integer.toString(x);
 			amount.setText(temp);
 		}
 	}
-
-	public void fillCartTable() {
-
-		nameColumnCart.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Furniture, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(TableColumn.CellDataFeatures<Furniture, String> p) {
-						return new SimpleStringProperty(p.getValue().getName());
-					}
-				});
-
-		priceColumnCart.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Furniture, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(TableColumn.CellDataFeatures<Furniture, String> p) {
-						return new SimpleStringProperty(Float.toString(p.getValue().getPrice()));
-					}
-				});
-
-		amountColumnCart.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Furniture, String>, ObservableValue<String>>() {
-
-					@Override
-					public ObservableValue<String> call(TableColumn.CellDataFeatures<Furniture, String> p) {
-						return new SimpleStringProperty(
-								Integer.toString(shoppingCart.containsItemWithId(p.getValue().getId())));
-					}
-
-				});
-
-		cartTable.setItems(shoppingCart.getItemList());
+	
+	//REMOVE FROM CART
+	@FXML
+	private void removeAdd() throws IOException {
+		if (x < shoppingCart.containsItemWithId(cartTable.getSelectionModel().getSelectedItem().getId())) {
+			x++;
+			String temp = Integer.toString(x);
+			LOLOLOLAMOUNTOLOLO.setText(temp);
+		}
 	}
 
+	@FXML
+	private void removeSub() throws IOException {
+		if (x > 1) {
+			x--;
+			String temp = Integer.toString(x);
+			LOLOLOLAMOUNTOLOLO.setText(temp);
+		}
+	}
+
+	
 	@FXML
 	private boolean addToCartButton() throws InterruptedException {
 
@@ -265,17 +262,13 @@ public class CustomerController {
 			if (shoppingCart.addItemToList(selectedItem)) {
 				fillCartTable();
 				respText.setText("Added item to cart!");
-				amount.setText("0");
-				x = 0;
-				TimeUnit.SECONDS.sleep(2);
-				amount.setText("");
+				amount.setText("1");
+				x = 1;
 				return true;
 			} else {
 				respText.setText("Item stock not sufficient!");
-				amount.setText("0");
-				x = 0;
-				TimeUnit.SECONDS.sleep(2);
-				amount.setText("");
+				amount.setText("1");
+				x = 1;
 				return false;
 			}
 		}
@@ -283,17 +276,38 @@ public class CustomerController {
 			if (shoppingCart.addItemToList(selectedItem, i)) {
 				fillCartTable();
 				respText.setText("Added items to cart!");
-				amount.setText("0");
-				x = 0;
-				TimeUnit.SECONDS.sleep(2);
-				amount.setText("");
+				amount.setText("1");
+				x = 1;
 				return true;
 			} else {
 				respText.setText("Item stock not sufficient!");
-				amount.setText("0");
-				x = 0;
-				TimeUnit.SECONDS.sleep(2);
-				amount.setText("");
+				amount.setText("1");
+				x = 1;
+				return false;
+			}
+		}
+		return false;
+	}
+
+	private boolean removeFromCartButton() {
+
+		String temp = LOLOLOLAMOUNTOLOLO.getText();
+		int i = Integer.parseInt(temp);
+		if (i == 1) {
+			if (shoppingCart.removeItemFromList(selectedItem.getId())) {
+				fillCartTable();
+				return true;
+			} else {
+				LOLOLOLRESPONSEOLOLOO.setText("Error!");
+				return false;
+			}
+		}
+		if (i > 1) {
+			if (shoppingCart.removeItemFromList(selectedItem.getId(), i)) {
+				fillCartTable();
+				return true;
+			} else {
+				LOLOLOLRESPONSEOLOLOO.setText("Error!");
 				return false;
 			}
 		}

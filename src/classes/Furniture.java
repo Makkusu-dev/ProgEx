@@ -1,7 +1,8 @@
 package classes;
 
 /**
- * The Furniture class of the ProgEx project. It contains getter/setter methods as well as a constructor for Furniture objects.
+ * The Furniture class of the ProgEx project. It contains getter/setter methods
+ * as well as a constructor for Furniture objects.
  *
  * @version 1.0
  */
@@ -24,9 +25,18 @@ public class Furniture {
 		this.price = price;
 	}
 
-	//Added constructer
-	public Furniture() {
-		// TODO Auto-generated constructor stub
+	// Hash function for dublicate elimination
+	public int hashCode() {
+		return name.hashCode();
+	}
+
+	// equals function for dublicate elimination
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Furniture))
+			return false;
+
+		Furniture f = (Furniture) obj;
+		return f.name.equals(name);
 	}
 
 	// Getters/Setters

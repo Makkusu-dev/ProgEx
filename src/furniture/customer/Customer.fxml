@@ -29,12 +29,12 @@
                               <Font name="System Bold" size="15.0" />
                            </font></Text>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f96ff00" height="200.0" layoutX="37.0" layoutY="86.0" onMouseClicked="#goZoom" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-                        <Text fx:id="amount" layoutX="503.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+                        <Text fx:id="amount" layoutX="503.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="32.0" layoutX="491.0" layoutY="229.0" stroke="BLACK" strokeType="INSIDE" width="32.0" />
-                        <Button layoutX="469.0" layoutY="232.0" mnemonicParsing="false" onAction="#sub" text="-" />
-                        <Button layoutX="524.0" layoutY="232.0" mnemonicParsing="false" onAction="#add" text="+" />
+                        <Button layoutX="469.0" layoutY="232.0" mnemonicParsing="false" onAction="#buySub" text="-" />
+                        <Button layoutX="524.0" layoutY="232.0" mnemonicParsing="false" onAction="#buyAdd" text="+" />
                         <Button layoutX="471.0" layoutY="276.0" mnemonicParsing="false" onAction="#addToCartButton" text="AddToCart" />
-                        <Text fx:id="respText" layoutX="492.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " />
+                        <Text fx:id="respText" layoutX="455.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
                      </children>
                   </AnchorPane>
             </content>
