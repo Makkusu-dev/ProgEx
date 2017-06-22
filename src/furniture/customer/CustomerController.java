@@ -25,6 +25,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
 import javafx.beans.property.SimpleStringProperty;
@@ -43,11 +45,23 @@ public class CustomerController {
 	@FXML
 	private Text name;
 
+
 	@FXML
 	Text exText;
 
 	@FXML
 	private ImageView imgView;
+	@FXML
+	private ImageView welcomePic;
+	@FXML
+	private ImageView imgViewZoom;
+
+	@FXML
+	private Rectangle box;
+	@FXML
+	private Rectangle box2;
+	@FXML
+	private Button buyMore;
 
 	@FXML
 	private Text amount;
@@ -91,6 +105,8 @@ public class CustomerController {
 	private Tab secondTab;
 	@FXML
 	private Tab thirdTab;
+	@FXML
+	private Tab fourthTab;
 
 	@FXML
 	private TextField filterField;
@@ -106,6 +122,7 @@ public class CustomerController {
 	int currentId;
 
 	private Image img;
+	private Image img2;
 
 	public void fillTable() {
 		nameColumn.setCellValueFactory(
@@ -224,9 +241,13 @@ public class CustomerController {
 		exText.setText(exTextIn);
 		imgView.setImage(img);
 		cartTable.setPlaceholder(new Label("room for furniture"));
-
+		img2 = new Image("file:media/welcome.png");
+		welcomePic.setImage(img2);
 		fillTable();
 		filter();
+		buyMore.setDisable(true);
+		fourthTab.setDisable(true);
+
 	}
 
 	@FXML
@@ -246,14 +267,35 @@ public class CustomerController {
 		tabPane.getSelectionModel().select(firstTab);
 
 		respText.setText("");
+			}
+
+	@FXML
+	private void inZoom() throws IOException {
+
+		imgView.setFitHeight(330);
+		imgView.setFitWidth(530);
+		name.setVisible(false);
+		priceTag.setVisible(false);
+		exText.setVisible(false);
+		imgView.setImage(img);
+		box.setStroke(Color.TRANSPARENT);
+
 	}
 
 	@FXML
-	private void goZoom() throws IOException {
-		respText.setText("");
-		Main.showCustZomm();
-	}
+	private void outZoom()throws IOException {
 
+		imgView.setFitHeight(200);
+		imgView.setFitWidth(200);
+
+
+		name.setVisible(true);
+		priceTag.setVisible(true);
+		exText.setVisible(true);
+		imgView.setImage(img);
+		box.setStroke(Color.BLACK);
+
+	}
 	// ADD TO CART
 	int x = 1;
 
@@ -401,6 +443,30 @@ public class CustomerController {
 		cartTable.setItems(tableList);
 		cartTable.refresh();
 		furnitureTable.refresh();
+		Database.saveFurniture(furnitureList);
+		tabPane.getSelectionModel().select(fourthTab);
+		fourthTab.setDisable(false);
+		buyMore.setDisable(false);
+		firstTab.setDisable(true);
+		secondTab.setDisable(true);
+		thirdTab.setDisable(true);
+
 	}
 
+	@FXML
+	private void buyMore(){
+		tabPane.getSelectionModel().select(firstTab);
+		fourthTab.setDisable(true);
+		firstTab.setDisable(false);
+		secondTab.setDisable(false);
+		thirdTab.setDisable(false);
+	}
+
+
+
+
+
+
 }
+
+

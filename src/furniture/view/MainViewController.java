@@ -13,10 +13,6 @@ public class MainViewController {
 
 	private Main main;
 
-	@FXML
-	private void goAdmin() throws IOException{
-		main.showLoginScene();
 
-	}
 }
 

@@ -27,6 +27,7 @@ public class Main extends Application {
 
 		showMainView();
 		showCustomerScene();
+		//showWelcomeScene();
 		Main.primaryStage.setResizable(false);
 	}
 
@@ -55,20 +56,13 @@ public class Main extends Application {
 		mainLayout.setCenter(mainItems);
 	}
 
-	public static void showLoginScene() throws IOException {
+
+
+	public static void showWelcomeScene () throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("view/Login.fxml"));
-		AnchorPane main = loader.load();
-		mainLayout.setCenter(main);
-	}
-
-
-	public static void showCustZomm () throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("customer/CustomerZoom.fxml"));
-		BorderPane zoom = loader.load();
-		mainLayout.setCenter(zoom);
-
+		loader.setLocation(Main.class.getResource("customer/Welcome.fxml"));
+		BorderPane welcome = loader.load();
+		mainLayout.setCenter(welcome);
 
 	}
 

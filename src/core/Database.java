@@ -36,7 +36,6 @@ public class Database {
 
 		} catch (Exception e) {
 			System.out.println(e);
-			System.out.println("fuuuuuuk");
 			System.exit(0);
 		}
 
@@ -86,10 +85,9 @@ public class Database {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:Database.db");
 			c.setAutoCommit(false);
-
-			// Delete the old stuff
 			stmt = c.createStatement();
 
+			// Delete the old stuff
 			stmt.executeUpdate("DELETE FROM Furniture;");
 
 			// Save everything
@@ -97,13 +95,11 @@ public class Database {
 				stmt.executeUpdate(
 						"INSERT INTO Furniture (ID, Category, Stock, Name, Description, PictureFile, Price)VALUES("
 								+ f.getId() + ", " + f.getCategory() + ", " + f.getStock() + ", '" + f.getName()
-								+ "', '" + f.getDescription() + "', '" + f.getPictureFile() + "', " + f.getPrice()
-								+ ");");
+								+ "', '" + f.getDescription() + "', '" + f.getPictureFile() + "', "
+								+ Float.toString(f.getPrice()) + ");");
 			}
-
 			c.commit();
 
-			System.out.println("++EVERYTHING NOW SAVED++");
 		} catch (Exception e) {
 			try {
 				c.rollback();
